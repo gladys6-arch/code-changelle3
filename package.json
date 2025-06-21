@@ -1,0 +1,27 @@
+{
+  "name": "code-changelle3",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/gladys6-arch/code-changelle3#readme",
+  "bugs": {
+    "url": "https://github.com/gladys6-arch/code-changelle3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gladys6-arch/code-changelle3.git"
+  },
+  "license": "MIT",
+  "author": "gladys",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.10",
+    "tailwindcss": "^4.1.10"
+  }
+}
