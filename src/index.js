@@ -2,24 +2,30 @@
 
 function displayPosts(){
   fetch('http://localhost:3000/posts')
-  .then(response => response.json())
-  .then(posts =>{
-    const unodered=document.getElementById('post-list');
-    unodered.innerHTML="";
+  .then((response => response.json()))
+  .then((posts)=>{
+    const postList=document.getElementById('post-list');
+    postList.innerHTML="";
 
-    posts.forEach(post =>{
-      const div=document.createElement('div');
-      div.textContent=post.title;
-      div.addEventListener('click',()=>handlePostClick(post.id));
-      unodered.appendChild(div);
-    })
-    if (posts.length > 0){
-      handlePostClick(posts[0].id);
-    }
+    posts.forEach((post)=>{
+      const postHeader= document.createElement('h3');
+      postHeader.innerHTML= post.title;
+      postHeader.style.cursor="pointer";
+      postHeader.dataset.id=post.id;
+
+      postHeader.addEventListener('click', ()=>handlePostClick(post.id));
+      postList.appendChild(postHeader);
+    });
   })
-
-
+  .catch((error)=>console.log("Error",error));
 }
+
+displayPosts();
+  
+
+
+
+
 function handlePostClick(postId){
 fetch('http://localhost:3000/posts/${postId}')
 .then(response => response.json())
@@ -33,4 +39,18 @@ fetch('http://localhost:3000/posts/${postId}')
 
 }
 
-
+function addNewPostListeener(){
+  const form=document.getElementById('post-form');
+  form.onsubmit=event => {
+    event.preventDefault();
+    const newPost={
+      title:
+      document.getElementById()
+    }
+  }
+}
+fetch('http://localhost:3000/posts')
+  .then(response => response.json())
+  .then(posts => {
+    console.log(posts); // An array of blog post objects
+  });
