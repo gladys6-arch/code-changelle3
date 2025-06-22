@@ -6,17 +6,19 @@ function displayPosts(){
   .then((response => response.json()))
   .then((posts)=>{
     const postList=document.getElementById('post-list');
-    postList.innerHTML="";
+    const postDetail=document.getElementById('post-detail');
 
+
+    postList.innerHTML="";
+    postDetail.innerHTML="";
     
       if(posts.length > 0){
         const firstPost=posts[0];
+
+      postDetail.innerHTML='<h2>${firstPost.title}</h2>  <img src="${firstPost.image}" alt="${firstPost.title}" style="max-width:100%;"> <p>Strong>Author:</strong>${firstPost.author}</p>  <p><strong>Date:</strong>${firstPost.date</p>  <p>${firstPost.content}</p>';
       
 
-      const detailContainer=document.createElement('div');
-      detailContainer.id='first-post-detail';
-      detailContainer.innerHTML='<h2>${firstPost}</h2> <img src="${firstPost.image}" alt=${firstPost.title}" style="max-width:100%;" <p><strong>Author:</strong>${firstPost.author}</p> <p><strong>Date:</strong>${firstPost.date}</p>  <p>${firstPost.content}</p>  ';
-
+      
          postList.appendChild(detailContainer);
 
       }
