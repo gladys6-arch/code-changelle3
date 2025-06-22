@@ -17,27 +17,19 @@ function displayPosts(){
       handlePostClick(posts[0].id);
     }
   })
+
+
 }
 function handlePostClick(postId){
-
-
-const deleteBtn=document.getElementById("btn");
-// adding the click event to the delete button
-deleteBtn.addEventListener('click', ()=>{
-  
-
-  if(RemovePost){
-    RemovePost.remove();
-  }
-  postDetails.innerHTML='<p>select a post to see details</p>'
-});
-
-// the edit button
-const editButton=document.getElementById('edit-btn');
-
-editButton.addEventListener('click',()=>{
-  populateEditForm(post);
+fetch('http://localhost:3000/posts/${postId}')
+.then(response => response.json())
+.then(post =>{
+  const detail=document.getElementById('post-detail');
+  detail.innerHTML='<h2>${post.title</h2> <p><strong>Author:</strong></p> <button id="edit-btn">edit</button> <button id="btn">Delete</button>';
+  document.getElementById('edit-btn').onclick=()=>showEditForm(post);
+  document.getElementById('btn').onclick=()=>deletePost(post.id)
 })
+
 
 }
 
