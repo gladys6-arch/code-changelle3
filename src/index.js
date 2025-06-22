@@ -17,17 +17,24 @@ function displayPosts(){
 
       postDetail.innerHTML='<h2>${firstPost.title}</h2>  <img src="${firstPost.image}" alt="${firstPost.title}" style="max-width:100%;"> <p>Strong>Author:</strong>${firstPost.author}</p>  <p><strong>Date:</strong>${firstPost.date</p>  <p>${firstPost.content}</p>';
       
-
-      
-         postList.appendChild(detailContainer);
+         
 
       }
+      posts.forEach((post)=>{
+        const postHeader=document.createElement('h3');
+        postHeader.textContent=post.title;
+        postHeader.style.cursor="pointer";
+        postHeader.dataset.id=post.id;
+
+        postHeader.addEventListener('click',()=>handlePostClick(post.id));
+        postList.appendChild(postHeader);
+      });
 
     })
+    .catch((error)=>console.error("Error loading posts:", error))
   }
   
-
-
+  
 function handlePostClick(postId){
 
   fetch(`http://localhost:3000/posts/${postId}`)
@@ -46,6 +53,7 @@ function handlePostClick(postId){
   .catch((error)=>console.error('Error loading post details',));
 
 }
+
 
 
 
