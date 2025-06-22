@@ -6,35 +6,32 @@ function displayPosts(){
   .then((response => response.json()))
   .then((posts)=>{
     const postList=document.getElementById('post-list');
-    const postDetail=document.getElementById('post-detail');
-
-
+    
     postList.innerHTML="";
-    postDetail.innerHTML="";
+    
     
       if(posts.length > 0){
-        const firstPost=posts[0];
-
-      postDetail.innerHTML='<h2>${firstPost.title}</h2>  <img src="${firstPost.image}" alt="${firstPost.title}" style="max-width:100%;"> <p>Strong>Author:</strong>${firstPost.author}</p>  <p><strong>Date:</strong>${firstPost.date</p>  <p>${firstPost.content}</p>';
-      
-         
+        handlePostClick=posts[0].id;
+  
 
       }
       posts.forEach((post)=>{
-        const postHeader=document.createElement('h3');
-        postHeader.textContent=post.title;
-        postHeader.style.cursor="pointer";
-        postHeader.dataset.id=post.id;
+        const postItem=document.createElement('div');
+        postItem.innerHTML= `
+          <h3 data-id="${post.id}" style="cursor:pointer;">${post.title}</h3>
+          <img src="${post.image}" alt="${post.title}" style="max-width: 150px;" />
+          <hr />
+        `;
+        postItem.querySelector('h3').addEventListener('click',()=> handlePostClick(post.id));
+        postList.appendChild(postItem)
 
-        postHeader.addEventListener('click',()=>handlePostClick(post.id));
-        postList.appendChild(postHeader);
       });
 
     })
     .catch((error)=>console.error("Error loading posts:", error))
   }
   
-  
+
 function handlePostClick(postId){
 
   fetch(`http://localhost:3000/posts/${postId}`)
@@ -50,10 +47,9 @@ function handlePostClick(postId){
         <p>${post.content}</p>
       `;
   })
-  .catch((error)=>console.error('Error loading post details',));
+  .catch((error)=>console.error('Error loading post details:', error));
 
 }
-
 
 
 
