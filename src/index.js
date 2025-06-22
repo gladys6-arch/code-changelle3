@@ -6,7 +6,7 @@ function displayPosts(){
   .then((posts)=>{
     const postList=document.getElementById('post-list');
     postList.innerHTML="";
-
+    // creating h3 for the title of the blog post
     posts.forEach((post)=>{
       const postHeader= document.createElement('h3');
       postHeader.innerHTML= post.title;
@@ -17,40 +17,22 @@ function displayPosts(){
       postList.appendChild(postHeader);
     });
   })
-  .catch((error)=>console.log("Error",error));
+  .catch((error)=>console.error("Error loading post",error));
 }
-
-displayPosts();
-  
-
-
-
 
 function handlePostClick(postId){
-fetch('http://localhost:3000/posts/${postId}')
-.then(response => response.json())
-.then(post =>{
-  const detail=document.getElementById('post-detail');
-  detail.innerHTML='<h2>${post.title</h2> <p><strong>Author:</strong></p> <button id="edit-btn">edit</button> <button id="btn">Delete</button>';
-  document.getElementById('edit-btn').onclick=()=>showEditForm(post);
-  document.getElementById('btn').onclick=()=>deletePost(post.id)
-})
-
+  fetch('http://localhost:3000/posts/${postId}')
+  .then((response)=>response.json())
+  .then((post)=>{
+    const detail=document.getElementById('post-detail');
+    detail.innerHTML= `
+        <h2>${post.title}</h2>
+        <p><strong>Author:</strong> ${post.author}</p>
+        <p>${post.content}</p>
+      `;
+  })
+  .catch((error)=>console.error('Error loading post details',));
 
 }
 
-function addNewPostListeener(){
-  const form=document.getElementById('post-form');
-  form.onsubmit=event => {
-    event.preventDefault();
-    const newPost={
-      title:
-      document.getElementById()
-    }
-  }
-}
-fetch('http://localhost:3000/posts')
-  .then(response => response.json())
-  .then(posts => {
-    console.log(posts); // An array of blog post objects
-  });
+
