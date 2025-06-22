@@ -4,18 +4,7 @@ body{
   padding: 0;
 }
 
-.container{
-min-height: 80vh;
-max-width: 800px;
-display: flex;
-background-color:white;
-justify-content: center;
-align-items: center;
-margin:auto;
-border-radius: 12px;
-padding: 60px;
-border: 1px solid black;
-}
+
  
 #post-list{
   cursor: pointer;
