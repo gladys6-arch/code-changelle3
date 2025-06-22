@@ -8,30 +8,23 @@ function displayPosts(){
     const postList=document.getElementById('post-list');
     postList.innerHTML="";
 
-    // creating h3 for the title of the blog post
-    posts.forEach((post)=>{
-      const postHeader= document.createElement('h3');
-      postHeader.innerHTML= post.title;
-      postHeader.style.cursor="pointer";
-      postHeader.dataset.id=post.id;
-
+    
       if(posts.length > 0){
-        const firstpost=posts[0];
-      }
+        const firstPost=posts[0];
+      
 
       const detailContainer=document.createElement('div');
       detailContainer.id='first-post-detail';
-      detailContainer.innerHTML=
+      detailContainer.innerHTML='<h2>${firstPost}</h2> <img src="${firstPost.image}" alt=${firstPost.title}" style="max-width:100%;" <p><strong>Author:</strong>${firstPost.author}</p> <p><strong>Date:</strong>${firstPost.date}</p>  <p>${firstPost.content}</p>  ';
 
-      postHeader.addEventListener('click', ()=>handlePostClick(post.id));
-      postList.appendChild(postHeader);
+         postList.appendChild(detailContainer);
 
-      
+      }
 
-    });
-  })
-  .catch((error)=>console.error("Error loading post detail:",error));
-}
+    })
+  }
+  
+
 
 function handlePostClick(postId){
 
