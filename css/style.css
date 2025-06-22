@@ -63,3 +63,18 @@ button:hover{
 .hidden{
   display: none;
 }
+
+#form-section form {
+  margin-bottom: 20px;
+}
+
+#post-list h3 {
+  cursor: pointer;
+  color: teal;
+}
+
+#post-detail img {
+  width: 100%;
+  max-width: 400px;
+}
+

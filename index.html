@@ -7,31 +7,44 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1 id="head">Post Blog</h1>
-  <div id="post-list"></div>
-  <div id="post-detail"></div>
-  <div class="form-class">
-  <form id="post-form">
-    <h2>Add new post</h2>
-    <input type="text" id="newTitle" placeholder="title">
-    <input type="text" id="newAuthor" placeholder="Author">
-    <input type="text" id="newImage" placeholder="Image URL"/>
-    <input type="date" id="newDate"/>
-    <textarea id="newContent" placeholder="Content"></textarea>
-    <button type="submit">Add post</button>
-  </form>
-  <form id="edit-post-form" class="hidden"> <!-- Add 'hidden' class by default -->
-    <h4>Update Post Details</h4>
-    <label for="edit-title">Title:</label>
-    <input type="text" name="title" id="edit-title" class="p-2 border rounded-md w-full mb-2">
-    <label for="edit-content">Content:</label>
-    <textarea name="content" id="edit-content" rows="5" class="p-2 border rounded-md w-full mb-4"></textarea>
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Update Post</button>
-    <button type="button" id="cancel-edit" class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md ml-2">Cancel</button>
-  </form>
-    </div>
+  <header>
+    <h1 id="head">Post Blog</h1>
+  </header>
+
+  <main>
+    <section id="post-list-section">
+      <div id="post-list"></div>
+    </section>
+
+    <section id="post-detail-section">
+      <div id="post-detail"></div>
+    </section>
+
+    <section id="form-section" class="form-class">
+      
+      <form id="post-form">
+        <h2>Add New Post</h2>
+        <input type="text" id="newTitle" placeholder="Title" required>
+        <input type="text" id="newAuthor" placeholder="Author" required>
+        <input type="text" id="newImage" placeholder="Image URL" required>
+        <input type="date" id="newDate" required>
+        <textarea id="newContent" placeholder="Content" required></textarea>
+        <button type="submit">Add Post</button>
+      </form>
+
+      
+      <form id="edit-post-form" class="hidden">
+        <h4>Update Post Details</h4>
+        <label for="edit-title">Title:</label>
+        <input type="text" name="title" id="edit-title" required>
+        <label for="edit-content">Content:</label>
+        <textarea name="content" id="edit-content" rows="5" required></textarea>
+        <button type="submit">Update Post</button>
+        <button type="button" id="cancel-edit">Cancel</button>
+      </form>
+    </section>
+  </main>
   
-  </div>
   <script src="src/index.js"></script>
 </body>
 </html>
