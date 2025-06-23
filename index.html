@@ -10,9 +10,25 @@
   <header>
     <h1 id="head">Post Blog</h1>
   </header>
+  
+  <form id="new-post-form">
+  <input id="newTitle" type="text" placeholder="Title" />
+  <input id="newImage" type="text" placeholder="Image URL" />
+  <input id="newAuthor" type="text" placeholder="Author" />
+  <textarea id="newContent" placeholder="Content"></textarea>
+  <button type="submit">Add Post</button>
+</form>
 
-  
-  
+<form id="edit-post-form" class="hidden">
+  <input id="edit-title" type="text" />
+  <textarea id="edit-content"></textarea>
+  <button type="submit">Update</button>
+  <button type="button" id="cancel-edit">Cancel</button>
+</form>
+<h2 id="Head">All Blog Posts</h2>
+<div id="post-list"></div>
+<h2>Post Details</h2>
+<div id="post-detail"></div>
   <script src="src/index.js"></script>
 </body>
 </html>

@@ -11,17 +11,17 @@ function displayPosts(){
     
     posts.forEach((post)=>{
         const postDiv=document.createElement('div');
-        
         postDiv.classList.add('post-Item');
         postDiv.dataset.id =post.id;
 
         const title=document.createElement('h3');
         title.textContent=post.title;
 
-        const image=document.createElement('img');
-        img.src=post.image;
-        img.alt=post.title;
-        img.style.width="150px";
+        const image = document.createElement('img');
+         image.src = post.image;     //  Fixed variable name
+         image.alt = post.title;
+         image.style.width = "300px";
+
 
         postDiv.appendChild(title);
         postDiv.appendChild(image);
@@ -55,15 +55,27 @@ function handlePostClick(postId){
         <p><strong>Author:</strong> ${post.author}</p>
         <p>${post.content}</p>
         <button id="edit-btn">Edit</button>
+        <button id="delete-btn">Delete</button>
       `;
 
       document.getElementById('edit-btn').addEventListener('click',()=>{
         showEditForm(post);
       });
+        document.getElementById('delete-btn').addEventListener('click', () => {
+  fetch(`http://localhost:3000/posts/${post.id}`, {
+    method: 'DELETE'
+  })
+  .then(() => {
+    displayPosts();
+    document.getElementById('post-detail').innerHTML = '<p>Post deleted.</p>';
   });
-  
-}
+});
 
+    
+        })
+         
+         }
+      
 
 function addNewPostListener() {
   const form = document.getElementById('new-post-form');
@@ -116,7 +128,7 @@ function showEditForm(post){
       content:updatedContent
 
     };
-    fetch('http://localhost:3000/posts/${post.id}',{
+    fetch( `http://localhost:3000/posts/${post.id}`,{
       method: "PATCH",
       headers:{
         "Content-Type":"application/json"
@@ -137,26 +149,17 @@ function showEditForm(post){
       form.classListl.add('hidden');
     });
 
-
-    const deletBtn=document.getElementById('delete-btn');
-    deletBtn.addEventListener('click',()=>{
-      fetch('http://localhost:3000/posts/${post.id}',{
-        method: "DELETE",
         
-      })
-      .then(()=>{
-        displayPosts();
+      }
+      
+    
 
-        document.getElementById('post-detail').innerHTML= '<p>Post deleted.</p>';
-      })
-    })
-}
 
 
     
 function main(){
   displayPosts();
-  addNewPost();
+  addNewPostListener();
 }
 
 
