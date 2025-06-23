@@ -9,27 +9,41 @@ function displayPosts(){
     
     postList.innerHTML="";
     
-    
-      if(posts.length > 0){
-        handlePostClick=posts[0].id;
-  
+    posts.forEach((post)=>{
+        const postDiv=document.createElement('div');
+        
+        postDiv.classList.add('post-Item');
+        postDiv.dataset.id =post.id;
 
-      }
-      posts.forEach((post)=>{
-        const postItem=document.createElement('div');
-        postItem.innerHTML= `
-          <h3 data-id="${post.id}" style="cursor:pointer;">${post.title}</h3>
-          <img src="${post.image}" alt="${post.title}" style="max-width: 150px;" />
-          <hr />
-        `;
-        postItem.querySelector('h3').addEventListener('click',()=> handlePostClick(post.id));
-        postList.appendChild(postItem)
+        const title=document.createElement('h3');
+        title.textContent=post.title;
+
+        const image=document.createElement('img');
+        img.src=post.image;
+        img.alt=post.title;
+        img.style.width="150px";
+
+        postDiv.appendChild(title);
+        postDiv.appendChild(img);
+
+        postDiv.addEventListener('click',()=>{
+          handlePostClick(post.id);
+        });
+
+         postList.appendChild(postDiv);
+         
+         if(posts.length >0){
+          handlePostClick(posts[0].id);
+         }
+      
+
+      });
+      
 
       });
 
-    })
-    .catch((error)=>console.error("Error loading posts:", error))
-  }
+    }
+    
   
 
 function handlePostClick(postId){
@@ -51,53 +65,53 @@ function handlePostClick(postId){
 
 }
 
+function addNewPostListener() {
+  const form = document.getElementById('new-post-form');
 
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent page reload
 
-function addNewPost(){
-  const form=document.getElementById('post-form');
-  form.addEventListener('submit',(event)=>{
-    event.preventDefault();
+    // ✅ Collect values
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const content = document.getElementById('content').value;
 
-    const title=document.getElementById('newTitle').value;
-    const image=document.getElementById('newImage').value;
-    const author=document.getElementById('newAuthor').value;
-    const content=document.getElementById('newContent').value;
-    const date=document.getElementById('newDate').value;
+    // Optional inputs
+     const image = "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d";
+// or document.getElementById('image')?.value
+    const date = new Date().toISOString().split('T')[0]; // format: YYYY-MM-DD
 
-    const newPost={
+    // ✅ Construct the post object
+    const newPost = {
       title,
-      image,
       author,
       content,
+      image,
       date
     };
 
+    // ✅ Debug log
     console.log("Submitting new post:", newPost);
 
-
-    fetch('http://localhost:3000/posts',{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        Accept:"application/json"
+    // ✅ Send to server
+    fetch("http://localhost:3000/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify(newPost)
+      body: JSON.stringify(newPost)
     })
-    .then(response=> response.json())
-    .then((createdPost)=>{
-      console.log('created Post',createdPost);
-      displayPosts();
-      form.reset();
-  })
-      .catch((error)=>
-        console.error('Error creating new post:',error)
-      );
-
-    });
-           
-       
+      .then((res) => res.json())
+      .then((createdPost) => {
+        console.log("Post created:", createdPost);
+        form.reset();
+        displayPosts(); // Refresh post list
+      })
+      .catch((error) => console.error("Error creating post:", error));
+  });
 }
 
+    
 function main(){
   displayPosts();
   addNewPost();
