@@ -21,7 +21,7 @@ project-folder/
 └── README.md
 
 ### Setup instructions
-1. **Clone the Rrpository**
+1. **Clone the Repository**
 2. **install JSON server Globally**
    *npm install -g json-server@0.17.4*
 3.**Start the Backend**
