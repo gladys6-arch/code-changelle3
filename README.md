@@ -1,7 +1,7 @@
 ## Blog post Manager
 This is a simple blog web application built using HTML,CSS and JavaScript. it uses Html live server for the frontend and Json server for the backend.
 
-
+### Features
 **.** View all available blog post.
 **.** View post details of the blog post *title,author,content*.
 **.** Add a new blog post.
@@ -28,3 +28,15 @@ project-folder/
    *json-server --watch db.json*
 4. **start the Frontend**
     *live-server*
+
+### Technologies Used
+    HTML
+    CSS
+    JavaScript
+    JSON Server
+
+### Credits
+Project built as part of frontend practice challenge.
+
+### Licence
+MIT Licence
