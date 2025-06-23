@@ -24,7 +24,7 @@ function displayPosts(){
         img.style.width="150px";
 
         postDiv.appendChild(title);
-        postDiv.appendChild(img);
+        postDiv.appendChild(image);
 
         postDiv.addEventListener('click',()=>{
           handlePostClick(post.id);
@@ -35,16 +35,13 @@ function displayPosts(){
          if(posts.length >0){
           handlePostClick(posts[0].id);
          }
-      
-
+    
       });
-      
 
       });
 
     }
     
-  
 
 function handlePostClick(postId){
 
@@ -55,15 +52,18 @@ function handlePostClick(postId){
     const detail=document.getElementById('post-detail');
     detail.innerHTML= `
         <h2>${post.title}</h2>
-        <img src="${post.image}" alt="${post.title}"/>
         <p><strong>Author:</strong> ${post.author}</p>
-        <p>Date:${post.date}</p>
         <p>${post.content}</p>
+        <button id="edit-btn">Edit</button>
       `;
-  })
-  .catch((error)=>console.error('Error loading post details:', error));
 
+      document.getElementById('edit-btn').addEventListener('click',()=>{
+        showEditForm(post);
+      });
+  });
+  
 }
+
 
 function addNewPostListener() {
   const form = document.getElementById('new-post-form');
@@ -71,45 +71,87 @@ function addNewPostListener() {
   form.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent page reload
 
-    // ✅ Collect values
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const content = document.getElementById('content').value;
+    // Collect values of the new form
+    const title = document.getElementById('newTitle').value;
+    const image=document.getElementById('newImage').value;    // "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d";
+    const author = document.getElementById('newTitle').value;
+    const content = document.getElementById('newContent').value;
 
-    // Optional inputs
-     const image = "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d";
-// or document.getElementById('image')?.value
-    const date = new Date().toISOString().split('T')[0]; // format: YYYY-MM-DD
-
-    // ✅ Construct the post object
-    const newPost = {
-      title,
-      author,
-      content,
-      image,
-      date
-    };
-
-    // ✅ Debug log
-    console.log("Submitting new post:", newPost);
-
-    // ✅ Send to server
-    fetch("http://localhost:3000/posts", {
+    const newPost= {title, image,author, content};
+       
+    // fetch
+    fetch('http://localhost:3000/posts',{
       method: "POST",
-      headers: {
+      headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newPost)
+      body:JSON.stringify(newPost)
+
     })
-      .then((res) => res.json())
-      .then((createdPost) => {
-        console.log("Post created:", createdPost);
+      .then(res=> res.json())
+      .then(()=>{
+        displayPosts();
         form.reset();
-        displayPosts(); // Refresh post list
-      })
-      .catch((error) => console.error("Error creating post:", error));
+      });
+      
+      
   });
 }
+
+
+function showEditForm(post){
+  const form =document.getElementById('edit-post-form');
+  form.classList.remove('hidden');
+  document.getElementById('edit-title').value=post.title;
+  document.getElementById('edit-content').value=post.content;
+
+  form.onsubmit= function(event){
+    event.preventDefault();
+
+    const updatedTitle=document.getElementById('edit-title').value;
+    const updatedContent=document.getElementById('edit-content').value;
+
+    const updatedPost={
+      title:updatedTitle,
+      content:updatedContent
+
+    };
+    fetch('http://localhost:3000/posts/${post.id}',{
+      method: "PATCH",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(updatedPost)
+    })
+    .then(res => res.json())
+    .then(()=>{
+      displayPosts();
+
+      document.getElementById('post-detail').innerHTML='<p>Post updated. click a post to view it.</P>';
+       form.reset();
+       form.classList.add('hidden');
+    });
+  };
+    document.getElementById('cancel-edit').addEventListener('click',()=>{
+      form.reset();
+      form.classListl.add('hidden');
+    });
+
+
+    const deletBtn=document.getElementById('delete-btn');
+    deletBtn.addEventListener('click',()=>{
+      fetch('http://localhost:3000/posts/${post.id}',{
+        method: "DELETE",
+        
+      })
+      .then(()=>{
+        displayPosts();
+
+        document.getElementById('post-detail').innerHTML= '<p>Post deleted.</p>';
+      })
+    })
+}
+
 
     
 function main(){
