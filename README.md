@@ -2,12 +2,12 @@
 This is a simple blog web application built using HTML,CSS and JavaScript. it uses Html live server for the frontend and Json server for the backend.
 
 ### Features
-**.** View all available blog post.
-**.** View post details of the blog post *title,author,content*.
-**.** Add a new blog post.
-**.** Edit an existing blog post.
-**.** Delete a blog post.
-**.** All changes are persisted to a backend using json-server.
+1. View all available blog post.
+2. View post details of the blog post *title,author,content*.
+3. Add a new blog post.
+4. Edit an existing blog post.
+5. Delete a blog post.
+6. All changes are persisted to a backend using json-server.
 
 ### Project structure
 
