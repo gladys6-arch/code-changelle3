@@ -5,32 +5,23 @@ function displayPosts(){
   fetch('http://localhost:3000/posts')
   .then((response => response.json()))
   .then((posts)=>{
-    const postList=document.getElementById('post-list');
+    const postList = document.getElementById('posts-list');
+
     
     postList.innerHTML="";
     
     posts.forEach((post)=>{
-        const postDiv=document.createElement('div');
-        postDiv.classList.add('post-Item');
-        postDiv.dataset.id =post.id;
+        const List=document.createElement('li');
+        List.textContent= post.title
+        List.classList.add('post-item')
 
-        const title=document.createElement('h3');
-        title.textContent=post.title;
-
-        const image = document.createElement('img');
-         image.src = post.image;     //  Fixed variable name
-         image.alt = post.title;
-         image.style.width = "300px";
-
-
-        postDiv.appendChild(title);
-        postDiv.appendChild(image);
-
-        postDiv.addEventListener('click',()=>{
+        List.addEventListener('click',()=>{
           handlePostClick(post.id);
-        });
+        })
 
-         postList.appendChild(postDiv);
+        postList.appendChild(List);
+        
+        });
          
          if(posts.length >0){
           handlePostClick(posts[0].id);
@@ -38,10 +29,7 @@ function displayPosts(){
     
       });
 
-      });
-
-    }
-    
+      };
 
 function handlePostClick(postId){
 
@@ -49,7 +37,7 @@ function handlePostClick(postId){
 
   .then(response=>response.json())
   .then((post)=>{
-    const detail=document.getElementById('post-detail');
+    const detail = document.getElementById('post-content');
     detail.innerHTML= `
         <h2>${post.title}</h2>
         <p><strong>Author:</strong> ${post.author}</p>
@@ -84,9 +72,9 @@ function addNewPostListener() {
     event.preventDefault(); // Prevent page reload
 
     // Collect values of the new form
-    const title = document.getElementById('newTitle').value;
-    const image=document.getElementById('newImage').value;    // "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d";
+    const title = document.getElementById('newTitle').value;   
     const author = document.getElementById('newTitle').value;
+    const image = document.getElementById('newImage').value;
     const content = document.getElementById('newContent').value;
 
     const newPost= {title, image,author, content};
@@ -113,7 +101,7 @@ function addNewPostListener() {
 
 function showEditForm(post){
   const form =document.getElementById('edit-post-form');
-  form.classList.remove('hidden');
+  form.classList.add('hidden');
   document.getElementById('edit-title').value=post.title;
   document.getElementById('edit-content').value=post.content;
 

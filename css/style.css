@@ -64,10 +64,19 @@ input, textarea {
 textarea {
   height: 100px;
   resize: vertical;
-     }
+   }
 .posts-list {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.post-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.post-item:last-child {
+    border-bottom: none;
 }

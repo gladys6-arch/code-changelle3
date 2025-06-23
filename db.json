@@ -1,30 +1,6 @@
 {
   "posts": [
     {
-      "id": "2",
-      "title": "10 Habits of The People in Newyork",
-      "image": "https://media.istockphoto.com/id/2156176090/photo/times-square-in-new-york-city.webp?a=1&b=1&s=612x612&w=0&k=20&c=SHApRJVb_bW5-Iv-iQ-ArKrHlkl365xw-kEYggFgjzM=",
-      "author": "Alex Maina",
-      "content": "As a Londoner, I dream of visiting New York City, posing with the Wall Street bull and Fearless Girl, walking through Park Avenue or Central Park, eating at a hot dog stand, snapping photos of world leaders outside the United Nations Headquarters, and exploring the New York Public Library, the MoMA and the Met.",
-      "date": "2025-06-12"
-    },
-    {
-      "id": "3",
-      "title": "Why is a Must For You to Visit Kenya",
-      "image": "https://media.istockphoto.com/id/697689066/photo/three-giraffe-in-national-park-of-kenya.webp?a=1&b=1&s=612x612&w=0&k=20&c=IJObgFOANRKSIxYSNqnR3JmGLjpQDm5IFd7zr7CGdT0=",
-      "author": "Mary Akoth",
-      "content": "This is probably one of THE most interesting facts about Kenya. Slicing through Kenya from north to south is the Great Rift Valley, also known as the East African Rift Valley. It was formed more than 25 million years ago by geological tension in the earth’s crust and is approximately 6500 kilometres long and 60 kilometres wide. The wide valley allowed for many lakes to form, creating unique habitats for the country’s wildlife.",
-      "date": "2025-06-14"
-    },
-    {
-      "id": "4",
-      "title": "Why Mombasa Attract More Tourist",
-      "image": "https://media.istockphoto.com/id/2153741067/photo/boardwalk-into-tropical-paradise-island.webp?a=1&b=1&s=612x612&w=0&k=20&c=8xqrSdJmY1kEimRbPap_l6z9b_OrISfPV7aKf0d6gHI=",
-      "author": "Jane Auma",
-      "content": "Mombasa, with a population of 900,000, is no sleepy seaside village. Its beachfront hotels appeal to travelers in search of sun, sand and surf, while its Arab, Indian and colonial European heritage makes for a wide variety of sights to see",
-      "date": "2025-06-17"
-    },
-    {
       "id": "5",
       "title": "10 Most expensive Hotels in Kenya",
       "image": "https://plus.unsplash.com/premium_photo-1661962360690-e91cc0df88f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW1hZ2UlMjBvZiUyMHRoZSUyMCUyMGx1eGFyaW91cyUyMGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D",
@@ -46,6 +22,20 @@
       "image": "https://kilimanjarobound.com/wp-content/uploads/2024/09/Zanzibar-Beach-Holidays-02.jpg",
       "author": "zanzibar beaches",
       "content": "this is one of the most beautiful beaches in the world"
+    },
+    {
+      "id": "56f5",
+      "title": "19 Amazing Places to Visit in July in the USA",
+      "image": "https://i0.wp.com/globalgrasshopper.com/wp-content/uploads/2024/04/Finger-Lakes-New-York-State.webp",
+      "author": "19 Amazing Places to Visit in July in the USA",
+      "content": "this is a beatyful place"
+    },
+    {
+      "id": "6d5a",
+      "title": "19 Amazing Places to Visit in July in the USA",
+      "image": "https://i0.wp.com/globalgrasshopper.com/wp-content/uploads/2024/04/Finger-Lakes-New-York-State.webp",
+      "author": "19 Amazing Places to Visit in July in the USA",
+      "content": "this is a beautyful place"
     }
   ]
 }
