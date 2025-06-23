@@ -80,3 +80,23 @@ textarea {
 .post-item:last-child {
     border-bottom: none;
 }
+.post-item:hover {
+    background-color: #f8f8f8;
+}
+.post-detail {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.new-post {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
