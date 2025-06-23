@@ -7,40 +7,42 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  
   <div class="container">
-        <h1>Blog Manager</h1>
-        <div class="main-content">
-            <div class="posts-list">
-                <h2>Posts</h2>
-                <ul id="posts-list"></ul>
-            </div>
-            <div class="post-detail">
-                <h2>Post Details</h2>
-                <div id="post-content"></div>
-            </div>
-        </div>
-        <div class="new-post">
-            <h2>Add New Post</h2>
-            <form id="new-post-form">
-                <input type="text" id="newTitle" placeholder="Title" >
-                <input type="text" id="newImage">
-                <textarea id="newContent" placeholder="Content" ></textarea>
-                <button type="submit">Add Post</button>
-            </form>
-    <form id="edit-post-form" class="hidden">
+  <h1>Blog Manager</h1>
+  <div class="main-content">
+  <div class="posts-list">
+  <h2>Posts</h2>
+  <ul id="posts-list"></ul>
+  </div>
+  <div class="post-detail">
+  <h2>Post Details</h2>
+  <div id="post-content"></div>
+  </div>
+  </div>
+   
+<div class="new-post"> /
+<h2>Add New Post</h2>
+<form id="new-post-form">
+ <input type="text" id="newTitle" placeholder="Title" >
+ <input type="text" id="newImage">
+ <textarea id="newContent" placeholder="Content" ></textarea>
+ <button type="submit">Add Post</button>
+</form>
+
+<form id="edit-post-form" class="hidden">
   <h4>Update Post Details</h4>
   <label for="edit-title">Title:</label>
   <input type="text" id="edit-title">
   
   <label for="edit-content">Content:</label>
   <textarea id="edit-content" rows="5"></textarea>
-  
   <button type="submit">Update Post</button>
   <button type="button" id="cancel-edit">Cancel</button>
 </form>
 
-        </div>
-    </div>
+  </div>
+  </div>
   <script src="src/index.js"></script>
 </body>
 </html>
