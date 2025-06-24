@@ -6,8 +6,6 @@ function displayPosts(){
   .then((response => response.json()))
   .then((posts)=>{
     const postList = document.getElementById('posts-list');
-
-    
     postList.innerHTML="";
     
     posts.forEach((post)=>{
@@ -101,19 +99,27 @@ function addNewPostListener() {
 
 function showEditForm(post){
   const form =document.getElementById('edit-post-form');
-  form.classList.add('hidden');
+  if(!form){
+    console.error('Edit form not found in the Dom');
+    return
+  }
+
+
   document.getElementById('edit-title').value=post.title;
   document.getElementById('edit-content').value=post.content;
+  form.classList.remove('hidden');
 
   form.onsubmit= function(event){
     event.preventDefault();
 
-    const updatedTitle=document.getElementById('edit-title').value;
-    const updatedContent=document.getElementById('edit-content').value;
+    const updatedTitle = document.getElementById('edit-title').value;
+    const updatedContent = document.getElementById('edit-content').value;
+
 
     const updatedPost={
       title:updatedTitle,
       content:updatedContent
+
 
     };
     fetch( `http://localhost:3000/posts/${post.id}`,{
@@ -123,27 +129,29 @@ function showEditForm(post){
       },
       body:JSON.stringify(updatedPost)
     })
-    .then(res => res.json())
+
+    .then(res=>{
+      if(!res.ok) throw new Error('server responded with status ${res.status}');
+      return res.json();
+    })
+
     .then(()=>{
       displayPosts();
-
       document.getElementById('post-detail').innerHTML='<p>Post updated. click a post to view it.</P>';
        form.reset();
        form.classList.add('hidden');
-    });
+    })
+    .catch(err=>console.error('Error updating post:',err))
   };
-    document.getElementById('cancel-edit').addEventListener('click',()=>{
-      form.reset();
-      form.classListl.add('hidden');
-    });
 
-        
-      }
-      
+  document.getElementById('cancel-edit').addEventListener('click',()=>{
+    form.reset();
+    form.classList.add('hidden');
+  });
     
-
-
-
+    }
+     
+  
     
 function main(){
   displayPosts();
